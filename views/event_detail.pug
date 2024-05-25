@@ -1,0 +1,18 @@
+extends layout 
+
+block content
+
+    div.container
+        h1 Event: #{event.title}
+        p #[strong Organizer: ] 
+            a(href="event.organizer.url") #{event.organizer.name}
+        p #[strong Description: ] #{event.description}
+        p #[strong Date: ] #{event.date}
+        p #[strong Time: ] #{event.time}
+        p #[strong Venue: ] 
+            a(href="event.venue.url") #{event.venue.name}
+        p #[strong Participants: ]
+            each participant, index in event.participants 
+                a(href="participant.url") #{participant.name}
+                if index < event.participants.length - 1 
+                    | ,&nbsp

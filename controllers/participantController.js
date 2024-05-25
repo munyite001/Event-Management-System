@@ -6,7 +6,7 @@ const {body, validationResult} = require('express-validator');
 
 // Display list of all participants.
 exports.participant_list = asyncHandler(async (req, res, next) => {
-    res.send('Not implemented: participant list');
+    res.render("participants_list", {title: "Participants"})
 })
 
 // Display detail page for a specific participant.
@@ -16,7 +16,10 @@ exports.participant_detail = asyncHandler(async (req, res, next) => {
 
 // Display participant create form on GET.
 exports.participant_create_get = asyncHandler(async (req, res, next) => {
-    res.send('Not implemented: participant create get');
+    res.render("participant_form", {
+        title: "Participant",
+        subTitle: "Add new Participant"
+    })
 })
 
 // Handle participant create on POST.

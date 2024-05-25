@@ -6,7 +6,7 @@ const {body, validationResult} = require('express-validator');
 
 // Display list of all venues.
 exports.venue_list = asyncHandler(async (req, res, next) => {
-    res.send('Not implemented: venue list');
+    res.render("venues_list", {title: "Venues"})
 })
 
 // Display detail page for a specific venue.
@@ -16,7 +16,10 @@ exports.venue_detail = asyncHandler(async (req, res, next) => {
 
 // Display venue create form on GET.
 exports.venue_create_get = asyncHandler(async (req, res, next) => {
-    res.send('Not implemented: venue create get');
+    res.render("venue_form", {
+        title: "Venues",
+        subTitle: "Add new Venue"
+    })
 })
 
 // Handle venue create on POST.

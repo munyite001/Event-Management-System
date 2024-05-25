@@ -1,0 +1,44 @@
+extends layout 
+
+block content 
+    h1.sub-title= subTitle 
+    form(method="POST")
+        div.input-box
+            label(for="title") Event Title:
+            input(type="text" name="title" id="title" required)
+        div.input-box
+            label(for="description") Description:
+            textarea(name="description" id="description" required)
+        div.input-box
+            label(for="date") Date: 
+            input(type="date" name="date", id="date" required)
+        div.input-box
+            label(for="time") Time: 
+            input(type="text" name="time", id="time" required)
+        div.input-box
+            label(for="venue") Venue: 
+            select(name="venue", id="venue" required)
+                option(value="") --Please select a venue--
+                for venue in venues
+                    option(value=venue._id) #{venue.name}
+        div.input-box
+            label(for="organizer") Organizer:
+            select(name="organizer", id="organizer" required)
+                option(value="") --Please select an organizer--
+                for organizer in organizers
+                    option(value=organizer._id) #{organizer.name}
+        div.input-box
+            label(for="participants") Participants:
+            select(name="participants", id="participants" multiple required)
+                for participant in participants
+                    option(value=participant._id) #{participant.name}
+
+        button.btn(type="submit") Submit
+
+
+    if errors 
+        ul 
+            for error in errors 
+                li(style="color: red;")!= error.msg
+        
+        

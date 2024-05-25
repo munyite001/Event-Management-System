@@ -1,5 +1,14 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block content 
+
+  div.container
+    h2 Welcome to the Event Management App 
+    p This is a simple app to manage events.
+    hr
+    p Here's some stats
+    ul 
+      li #[strong Total Events]: #{event_count}
+      li #[strong Total Venues]: #{venue_count}
+      li #[strong Total Organizers]: #{organizer_count}
+      li #[strong Total Participants]: #{participant_count}

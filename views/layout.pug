@@ -4,4 +4,44 @@ html
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    header.header
+      nav.nav
+        h2.title= title
+        div.nav-container
+          div.nav-link
+            a(href="/") Home
+          div.nav-link
+            a(href="/catalog/events") Events
+            div#events-drop-down.drop-down
+              div.nested-link
+                a(href="/catalog/event/create") Create New Event
+              hr
+              div.nested-link
+                a(href="/catalog/events") View All Events
+          div.nav-link
+            a(href="/catalog/organizers") Organizers
+            div#events-drop-down.drop-down
+              div.nested-link
+                a(href="/catalog/organizer/create") Add new Organizer
+              hr
+              div.nested-link
+                a(href="/catalog/organizers") View All Organizers
+          div.nav-link
+            a(href="/catalog/venues") Venues
+            div#events-drop-down.drop-down
+              div.nested-link
+                a(href="/catalog/venue/create") Add New Venue
+              hr
+              div.nested-link
+                a(href="/catalog/venues") View All Venues
+          div.nav-link
+            a(href="/catalog/participants") Participants
+            div#events-drop-down.drop-down
+              div.nested-link
+                a(href="/catalog/participant/create") Add New Participant
+              hr
+              div.nested-link
+                a(href="/catalog/participants") View All Events
+    div.container
+      block content
+    script(src="/javascripts/script.js")

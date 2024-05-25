@@ -6,7 +6,7 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all organizers.
 exports.organizer_list = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer list");
+    res.render("organizers_list", { title: "Organizers" })
 })
 
 // Display detail page for a specific organizer.
@@ -16,7 +16,10 @@ exports.organizer_detail = asyncHandler(async (req, res, next) => {
 
 // Display organizer create form on GET.
 exports.organizer_create_get = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer create get");
+    res.render("organizer_form", {
+        title: "Organizers",
+        subTitle: "Add New Organizer "
+    })
 })
 
 // Handle organizer create on POST.

@@ -1,0 +1,14 @@
+extends layout 
+
+block content 
+    div.container
+        if event_list.length 
+            h2 List of all available events
+            ul 
+                each event in event_list 
+                    li
+                        a(href=event.url) #{event.title} 
+                        | (#{event.date})
+                        hr(style="height: 0.1rem; margin: 0.5rem 0; border: none; background-color: #333;")
+        else 
+            p There are No events.
