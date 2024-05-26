@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+    div.container
+        h1 Event: #{event.title}
+        p #[strong Are you sure you want to delete this event ?]
+        form(method="POST")
+            input#eventid(type="hidden", name="eventid", value=event._id)
+            button.btn(type="submit") Delete

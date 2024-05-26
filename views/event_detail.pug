@@ -16,3 +16,6 @@ block content
                 a(href="participant.url") #{participant.name}
                 if index < event.participants.length - 1 
                     | ,&nbsp
+        div.btn-container
+            a.btn(href=`/catalog/event/${event._id}/update`) update
+            a.btn(href=`/catalog/event/${event._id}/delete`) delete 

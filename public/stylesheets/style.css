@@ -5,6 +5,15 @@
   text-decoration: none;
 }
 
+a {
+  color: goldenrod;
+  transition: all 0.2s ease;
+}
+
+a:hover {
+  color: gold;
+}
+
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
@@ -85,7 +94,7 @@ body {
 }
 
 /* FORM */
-form {
+form.event-form {
   width: 80%;
   max-width: 400px;
   border-radius: 10px;
@@ -169,4 +178,17 @@ form .input-box textarea {
   outline: none;
   cursor: pointer;
   margin: 1rem 0;
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  background-color: white;
+  color: goldenrod;
+  border: 1px solid goldenrod;
+}
+
+.btn-container {
+  display: flex;
+  width: 8rem;
+  justify-content: space-between;
 }

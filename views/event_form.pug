@@ -2,36 +2,56 @@ extends layout
 
 block content 
     h1.sub-title= subTitle 
-    form(method="POST")
+    form(method="POST" class="event-form")
         div.input-box
             label(for="title") Event Title:
-            input(type="text" name="title" id="title" required)
+            input(type="text" name="title" id="title" required value=(undefined==event ? '' : event.title))
         div.input-box
             label(for="description") Description:
             textarea(name="description" id="description" required)
+                = (undefined==event ? '' : event.description)
         div.input-box
             label(for="date") Date: 
-            input(type="date" name="date", id="date" required)
+            input(type="date" name="date", id="date" required value=(undefined==event ? '': event.date))
         div.input-box
             label(for="time") Time: 
-            input(type="text" name="time", id="time" required)
+            input(type="text" name="time", id="time" required value=(undefined==event ? '': event.time))
         div.input-box
             label(for="venue") Venue: 
             select(name="venue", id="venue" required)
                 option(value="") --Please select a venue--
                 for venue in venues
-                    option(value=venue._id) #{venue.name}
+                    if event
+                        if venue._id.toString() == event.venue._id.toString()
+                            option(value=venue._id selected) #{venue.name}
+                        else 
+                            option(value=venue._id) #{venue.name}
+                    else 
+                        option(value=venue._id) #{venue.name}
         div.input-box
             label(for="organizer") Organizer:
             select(name="organizer", id="organizer" required)
                 option(value="") --Please select an organizer--
                 for organizer in organizers
-                    option(value=organizer._id) #{organizer.name}
+                    if event
+                        if organizer._id.toString()===event.organizer._id.toString()
+                            option(value=organizer._id selected) #{organizer.name}
+                        else
+                            option(value=organizer._id) #{organizer.name}
+                    else
+                        option(value=organizer._id) #{organizer.name}
         div.input-box
             label(for="participants") Participants:
             select(name="participants", id="participants" multiple required)
+                option(value="") --Please select participants--
                 for participant in participants
-                    option(value=participant._id) #{participant.name}
+                    if event
+                        if event.participants.includes(participant._id)
+                            option(value=participant._id selected) #{participant.name}
+                        else
+                            option(value=participant._id) #{participant.name}
+                    else
+                        option(value=participant._id) #{participant.name}
 
         button.btn(type="submit") Submit
 
