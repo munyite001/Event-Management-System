@@ -6,7 +6,13 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all organizers.
 exports.organizer_list = asyncHandler(async (req, res, next) => {
-    res.render("organizers_list", { title: "Organizers" })
+    const allOrganizers = await Organizer.find({}).exec()
+
+    res.render("organizer_list", {
+        title: "Organizers",
+        subTitle: "List of Organizers",
+        organizers: allOrganizers
+    })
 })
 
 // Display detail page for a specific organizer.

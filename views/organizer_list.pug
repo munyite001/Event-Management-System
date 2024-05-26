@@ -1,0 +1,15 @@
+extends layout 
+
+block content 
+
+    div.container
+        if organizers.length
+            h2= subTitle
+            ul 
+                each organizer in organizers 
+                    li
+                        a(href=organizer.url) #{organizer.name} 
+                        | (#{organizer.email})
+                        hr(style="height: 0.1rem; margin: 0.5rem 0; border: none; background-color: #333;")
+        else
+            p There are No organizers.
