@@ -2,7 +2,7 @@ extends layout
 
 block content 
     h1.sub-title= subTitle 
-    form(method="POST" class="event-form")
+    form(method="POST" class="create-form")
         div.input-box
             label(for="title") Event Title:
             input(type="text" name="title" id="title" required value=(undefined==event ? '' : event.title))
