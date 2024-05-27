@@ -1,0 +1,14 @@
+extends layout 
+
+block content
+
+    div.container
+        h2 Venue Detail
+        hr
+        p #[strong Name: ] #{venue.name}
+        p #[strong Address: ] #{venue.address}
+        p #[strong Capacity: ] #{venue.capacity}
+
+    div.btn-container
+            a.btn(href=`/catalog/venue/${venue._id}/update`) update
+            a.btn(href=`/catalog/venue/${venue._id}/delete`) delete 

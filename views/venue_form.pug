@@ -1,4 +1,21 @@
-extends layout 
+extends layout
 
-block content 
+block content
     h1.sub-title= subTitle
+
+    form(method="POST" class="create-form")
+        div.input-box
+            label(for="name") Name:
+            input(type="text" name="name" id="name" placeholder="e.g., Kasarani Stadium" required value=(undefined==venue ? '' : venue.name))
+        div.input-box
+            label(for="address") Address:
+            input(type="text" name="address" id="address" placeholder="e.g., Nairobi" required value=(undefined==venue ? '' : venue.address))
+        div.input-box
+            label(for="capacity") Capacity:
+            input(type="number" name="capacity" id="capacity" required placeholder="e.g., 20000" value=(undefined==venue ? '' : venue.capacity))
+        button.btn(type="submit") Submit
+
+    if errors
+        ul
+            each error in errors
+                li(style="color: red;")= error.msg

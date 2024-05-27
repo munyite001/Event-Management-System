@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+    div.container
+        h1 Venue: #{venue.name}
+        p #[strong Are you sure you want to delete this Venue ?]
+        form(method="POST")
+            input#venueid(type="hidden", name="organizerid", value=venue._id)
+            button.btn(type="submit") Delete

@@ -1,4 +1,15 @@
 extends layout 
 
 block content 
-    p The Venues list will go here 
+
+    div.container
+        if venues.length
+            h2= subTitle
+            ul 
+                each venue in venues 
+                    li
+                        a(href=venue.url) #{venue.name} 
+                        | (#{venue.address})
+                        hr(style="height: 0.1rem; margin: 0.5rem 0; border: none; background-color: #333;")
+        else
+            p There are No venues.
