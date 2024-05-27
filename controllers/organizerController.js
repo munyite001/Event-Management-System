@@ -94,20 +94,97 @@ exports.organizer_create_post = [
 
 // Display organizer delete form on GET.
 exports.organizer_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer delete get");
+    const organizer = await Organizer.findById(req.params.id).exec()
+
+    if (organizer == null) {
+        const err = new Error("Organizer not Found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render("organizer_delete", {
+        title: "Organizers",
+        subTitle: "Delete Organizer",
+        organizer: organizer
+    })
 })
 
 // Handle organizer delete on POST.
 exports.organizer_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer delete post");
+    const organizer = await Organizer.findById(req.params.id).exec()
+
+    if (organizer == null) {
+        const err = new Error("Organizer Not Found")
+        err.status = 404;
+        return next(err);
+    }
+
+    await Organizer.findByIdAndDelete(req.body.organizerid).exec()
+    res.redirect("/catalog/organizers")
 })
 
 // Display organizer update form on GET.
 exports.organizer_update_get = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer update get");
+    const organizer = await Organizer.findById(req.params.id).exec()
+
+    if (organizer == null) {
+        const err = new Error("Organizer not Found");
+        err.status = 404;
+        return next(err);
+    }
+
+    res.render("organizer_form", {
+        title: "Organizers",
+        subTitle: "Update Organizer",
+        organizer: organizer
+    })
 })
 
 // Handle organizer update on POST.
-exports.organizer_update_post = asyncHandler(async (req, res, next) => {
-    res.send("Not implemented: organizer update post");
-})
+exports.organizer_update_post = [
+    //  Validate and sanitize the input fields
+    body("name")
+    .trim()
+    .isLength({min: 3})
+    .withMessage("Organizer Name shoudl be atleast 3 characters long")
+    .escape(),
+    body("email")
+    .trim()
+    .isLength({min: 1})
+    .withMessage("Email should not be empty")
+    .escape(),
+    body("phone")
+    .trim()
+    .isLength({min: 10, max: 15})
+    .withMessage("Phone number should be between 10 and 15 digits")
+    .isNumeric()
+    .withMessage("Phone number should be numeric")
+    .escape(),
+
+    //  Process request after validation and sanitization
+    asyncHandler(async (req, res, next) => {
+        const errors = validationResult(req);
+
+        //  Create a new Organizer object with escaped and trimmed data
+        const organizer = new Organizer({
+            name: req.body.name,
+            email: req.body.email,
+            phone: req.body.phone,
+            _id: req.params.id
+        })
+
+        if (!errors.isEmpty()) {
+            res.render("organizer_form", {
+                title: "Organizers",
+                subTitle: "Update Organizer",
+                organizer: organizer,
+                errors: errors.array()
+            })
+            return
+        } else {
+            // Data from form is valid. Save organizer
+            await Organizer.findByIdAndUpdate(req.params.id, organizer, {})
+            res.redirect(organizer.url)
+        }
+    })
+]

@@ -8,3 +8,7 @@ block content
         p #[strong Name: ] #{organizer.name}
         p #[strong Email: ] #{organizer.email}
         p #[strong Contact: ] #{organizer.phone}
+
+    div.btn-container
+            a.btn(href=`/catalog/organizer/${organizer._id}/update`) update
+            a.btn(href=`/catalog/organizer/${organizer._id}/delete`) delete 

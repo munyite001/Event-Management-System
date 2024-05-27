@@ -156,7 +156,9 @@ exports.event_delete_post = asyncHandler(async (req, res, next) => {
     const event = await Event.findById(req.body.eventid).exec()
 
     if (event == null) {
-        res.redirect("/catalog/events")
+        const err = new Error("Event Not Found")
+        err.status = 404;
+        return next(err);
     }
 
     await Event.findByIdAndDelete(req.body.eventid).exec()

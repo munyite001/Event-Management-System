@@ -1,0 +1,9 @@
+extends layout 
+
+block content 
+    div.container
+        h1 Organizer: #{organizer.name}
+        p #[strong Are you sure you want to delete this Organizer ?]
+        form(method="POST")
+            input#organizerid(type="hidden", name="organizerid", value=organizer._id)
+            button.btn(type="submit") Delete
